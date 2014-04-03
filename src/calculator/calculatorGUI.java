@@ -12,6 +12,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
 
@@ -116,65 +117,175 @@ public class calculatorGUI extends JFrame {
 		
 		/*clean*/
 		JButton btnC = new JButton("C");
+		btnC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Graphics.setText(String.format("0"));
+			}
+		});
 		btnC.setBounds(270, 110, 60, 30);
 		contentPane.add(btnC);
 		
 		JButton btnCe = new JButton("CE");
 		btnCe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				double Num=0;
-				Graphics.setText(String.format("%f", Num));
+				Graphics.setText(String.format("0"));
 			}
 		});
 		btnCe.setBounds(205, 110, 60, 30);
 		contentPane.add(btnCe);
 		
 		JButton btnShift = new JButton("<-");
+		btnShift.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String SNum = Graphics.getText();
+				if(SNum.length()==1)
+				Graphics.setText("0");
+				else
+				{SNum=SNum.substring(0,SNum.length()-1);
+				Graphics.setText(SNum);}
+			}
+		});
 		btnShift.setBounds(140, 110, 60, 30);
 		contentPane.add(btnShift);
 		
 		/*¼Æ*/
 		JButton btnn1 = new JButton("1");
+		btnn1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String SNum =Graphics.getText();
+				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+				Graphics.setText(Graphics.getText()+"1");
+				else
+				Graphics.setText("1");
+			}
+		});
 		btnn1.setBounds(140, 215, 60, 30);
 		contentPane.add(btnn1);
 		
 		JButton btnn2 = new JButton("2");
+		btnn2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String SNum =Graphics.getText();
+				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+					Graphics.setText(Graphics.getText()+"2");
+					else
+					Graphics.setText("2");
+			}
+		});
 		btnn2.setBounds(205, 215, 60, 30);
 		contentPane.add(btnn2);
 		
 		JButton btnn3 = new JButton("3");
+		btnn3.addActionListener(new ActionListener() {			
+			public void actionPerformed(ActionEvent e) {
+				String SNum =Graphics.getText();
+				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+					Graphics.setText(Graphics.getText()+"3");
+					else
+					Graphics.setText("3");
+			}
+		});
 		btnn3.setBounds(270, 215, 60, 30);
 		contentPane.add(btnn3);
 		
 		JButton btnn4 = new JButton("4");
+		btnn4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String SNum =Graphics.getText();
+				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+					Graphics.setText(Graphics.getText()+"4");
+					else
+					Graphics.setText("4");
+			}
+		});
 		btnn4.setBounds(140, 180, 60, 30);
 		contentPane.add(btnn4);
 		
 		JButton btnn5 = new JButton("5");
+		btnn5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String SNum =Graphics.getText();
+				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+					Graphics.setText(Graphics.getText()+"5");
+					else
+					Graphics.setText("5");
+			}
+		});
 		btnn5.setBounds(205, 180, 60, 30);
 		contentPane.add(btnn5);
 		
 		JButton btnn6 = new JButton("6");
+		btnn6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String SNum =Graphics.getText();
+				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+					Graphics.setText(Graphics.getText()+"6");
+					else
+					Graphics.setText("1");
+			}
+		});
 		btnn6.setBounds(270, 180, 60, 30);
 		contentPane.add(btnn6);
 		
 		JButton btnn7 = new JButton("7");
+		btnn7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String SNum =Graphics.getText();
+				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+					Graphics.setText(Graphics.getText()+"7");
+					else
+					Graphics.setText("7");
+			}
+		});
 		btnn7.setBounds(140, 145, 60, 30);
 		contentPane.add(btnn7);
 		
 		JButton btnn8 = new JButton("8");
+		btnn8.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String SNum =Graphics.getText();
+				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+					Graphics.setText(Graphics.getText()+"8");
+					else
+					Graphics.setText("8");
+			}
+		});
 		btnn8.setBounds(205, 145, 60, 30);
 		contentPane.add(btnn8);
 		
 		JButton btnn9 = new JButton("9");
+		btnn9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String SNum =Graphics.getText();
+				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+					Graphics.setText(Graphics.getText()+"9");
+					else
+					Graphics.setText("9");
+			}
+		});
 		btnn9.setBounds(270, 145, 60, 30);
 		contentPane.add(btnn9);
 		
 		JButton btnn0 = new JButton("0");
+		btnn0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String SNum =Graphics.getText();
+				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+					Graphics.setText(Graphics.getText()+"0");
+					else
+					Graphics.setText("0");
+			}
+		});
 		btnn0.setBounds(140, 250, 125, 30);
 		contentPane.add(btnn0);
-		
 		JButton btnDot = new JButton(".");
+		btnDot.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String SNum =Graphics.getText();
+				if(SNum.indexOf(".")<0)
+				Graphics.setText(Graphics.getText()+".");
+			}
+		});
 		btnDot.setBounds(270, 250, 60, 30);
 		contentPane.add(btnDot);
 		
