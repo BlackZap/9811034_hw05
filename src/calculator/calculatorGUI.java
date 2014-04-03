@@ -79,21 +79,40 @@ public class calculatorGUI extends JFrame {
 		
 		/*次方*/
 		JButton btnSquare = new JButton("^1/2");
+		btnSquare.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double Num = Double.parseDouble(Graphics.getText());
+				Graphics.setText(String.format("%f", Math.pow(Num,0.5)));
+			}
+		});
 		btnSquare.setBounds(400, 110, 60, 30);
 		contentPane.add(btnSquare);
 		
 		JButton btnPower = new JButton("x^y");
+		
 		btnPower.setBounds(75, 110, 60, 30);
 		contentPane.add(btnPower);
 		
 		JButton btnRec = new JButton("1/x");
+		btnRec.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double Num = Double.parseDouble(Graphics.getText());
+				Graphics.setText(String.format("%f", 1/Num));
+			}
+		});
 		btnRec.setBounds(400, 180, 60, 30);
 		contentPane.add(btnRec);
 		
 		/*變號*/
-		JButton btnchanging = new JButton("\u00B1");
-		btnchanging.setBounds(335, 110, 60, 30);
-		contentPane.add(btnchanging);
+		JButton btnChanging = new JButton("\u00B1");
+		btnChanging.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double Num = Double.parseDouble(Graphics.getText());
+				Graphics.setText(String.format("%f", -Num));
+			}
+		});
+		btnChanging.setBounds(335, 110, 60, 30);
+		contentPane.add(btnChanging);
 		
 		/*clean*/
 		JButton btnC = new JButton("C");
@@ -101,6 +120,12 @@ public class calculatorGUI extends JFrame {
 		contentPane.add(btnC);
 		
 		JButton btnCe = new JButton("CE");
+		btnCe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double Num=0;
+				Graphics.setText(String.format("%f", Num));
+			}
+		});
 		btnCe.setBounds(205, 110, 60, 30);
 		contentPane.add(btnCe);
 		
@@ -176,6 +201,12 @@ public class calculatorGUI extends JFrame {
 		contentPane.add(btnDiv);
 		
 		JButton btnPercent = new JButton("%");
+		btnPercent.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double Num = Double.parseDouble(Graphics.getText());
+				Graphics.setText(String.format("%f",  Num/100));
+			}
+		});
 		btnPercent.setBounds(400, 145, 60, 30);
 		contentPane.add(btnPercent);
 		
@@ -249,10 +280,22 @@ public class calculatorGUI extends JFrame {
 		contentPane.add(btnPi);
 		
 		JButton btnLog = new JButton("log");
+		btnLog.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double Num = Double.parseDouble(Graphics.getText());
+				Graphics.setText(String.format("%f",  Math.log(Num)/Math.log(10)));
+			}
+		});
 		btnLog.setBounds(75, 250, 60, 30);
 		contentPane.add(btnLog);
 		
 		JButton btnLn = new JButton("ln");
+		btnLn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double Num = Double.parseDouble(Graphics.getText());
+				Graphics.setText(String.format("%f",  Math.log(Num)));
+			}
+		});
 		btnLn.setBounds(10, 250, 60, 30);
 		contentPane.add(btnLn);
 	}
