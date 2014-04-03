@@ -9,14 +9,16 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JToolBar;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.SwingConstants;
 
 public class calculatorGUI extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField Graphics;
 
 	/**
 	 * Launch the application.
@@ -37,13 +39,14 @@ public class calculatorGUI extends JFrame {
 		toolBar.setBounds(0, 0, 96, 20);
 		contentPane.add(toolBar);
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.RIGHT);
-		textField.setToolTipText("");
-		textField.setText("0");
-		textField.setBounds(10, 20, 450, 45);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		/*上方顯示欄*/
+		Graphics = new JTextField();
+		Graphics.setHorizontalAlignment(SwingConstants.RIGHT);
+		Graphics.setToolTipText("");
+		Graphics.setText("0");
+		Graphics.setBounds(10, 20, 450, 45);
+		contentPane.add(Graphics);
+		Graphics.setColumns(10);
 		
 		/*記憶功能*/
 		JButton btnMsub = new JButton("M-");
@@ -182,26 +185,62 @@ public class calculatorGUI extends JFrame {
 		
 		/*工程*/
 		JButton btnCos = new JButton("cos");
+		btnCos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double Num = Double.parseDouble(Graphics.getText());
+				Graphics.setText(String.format("%f",  Math.cos(Num)));
+			}
+		});
 		btnCos.setBounds(75, 180, 60, 30);
 		contentPane.add(btnCos);
 		
 		JButton btnCosh = new JButton("cosh");
+		btnCosh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double Num = Double.parseDouble(Graphics.getText());
+				Graphics.setText(String.format("%f",  Math.cosh(Num)));
+			}
+		});
 		btnCosh.setBounds(10, 180, 60, 30);
 		contentPane.add(btnCosh);
 		
 		JButton btnTan = new JButton("tan");
+		btnTan.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double Num = Double.parseDouble(Graphics.getText());
+				Graphics.setText(String.format("%f",  Math.tan(Num)));
+			}
+		});
 		btnTan.setBounds(75, 215, 60, 30);
 		contentPane.add(btnTan);
 		
 		JButton btnSin = new JButton("sin");
+		btnSin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double Num = Double.parseDouble(Graphics.getText());
+				Graphics.setText(String.format("%f",  Math.sin(Num)));
+			}
+		});
 		btnSin.setBounds(75, 145, 60, 30);
 		contentPane.add(btnSin);
 		
 		JButton btnSinh = new JButton("sinh");
+		btnSinh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double Num = Double.parseDouble(Graphics.getText());
+				Graphics.setText(String.format("%f",  Math.sinh(Num)));
+			}
+		});
 		btnSinh.setBounds(10, 145, 60, 30);
 		contentPane.add(btnSinh);
 		
 		JButton btnTanh = new JButton("tanh");
+		btnTanh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				double Num = Double.parseDouble(Graphics.getText());
+				Graphics.setText(String.format("%f",  Math.tanh(Num)));
+			}
+		});
 		btnTanh.setBounds(10, 215, 60, 30);
 		contentPane.add(btnTanh);
 		
