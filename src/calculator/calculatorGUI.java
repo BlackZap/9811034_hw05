@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class calculatorGUI extends JFrame {
 
@@ -20,18 +21,6 @@ public class calculatorGUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					calculatorGUI frame = new calculatorGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -45,14 +34,18 @@ public class calculatorGUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 430, 20);
+		toolBar.setBounds(0, 0, 96, 20);
 		contentPane.add(toolBar);
 		
 		textField = new JTextField();
-		textField.setBounds(24, 20, 420, 30);
+		textField.setHorizontalAlignment(SwingConstants.RIGHT);
+		textField.setToolTipText("");
+		textField.setText("0");
+		textField.setBounds(10, 20, 450, 45);
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
+		/*記憶功能*/
 		JButton btnMsub = new JButton("M-");
 		btnMsub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -72,11 +65,7 @@ public class calculatorGUI extends JFrame {
 		JButton btnMs = new JButton("MS");
 		btnMs.setBounds(270, 75, 60, 30);
 		contentPane.add(btnMs);
-		
-		JButton btnSquare = new JButton("^1/2");
-		btnSquare.setBounds(400, 110, 60, 30);
-		contentPane.add(btnSquare);
-		
+				
 		JButton btnMr = new JButton("MR");
 		btnMr.setBounds(205, 75, 60, 30);
 		contentPane.add(btnMr);
@@ -85,10 +74,25 @@ public class calculatorGUI extends JFrame {
 		btnMc.setBounds(140, 75, 60, 30);
 		contentPane.add(btnMc);
 		
+		/*次方*/
+		JButton btnSquare = new JButton("^1/2");
+		btnSquare.setBounds(400, 110, 60, 30);
+		contentPane.add(btnSquare);
+		
+		JButton btnPower = new JButton("x^y");
+		btnPower.setBounds(75, 110, 60, 30);
+		contentPane.add(btnPower);
+		
+		JButton btnRec = new JButton("1/x");
+		btnRec.setBounds(400, 180, 60, 30);
+		contentPane.add(btnRec);
+		
+		/*變號*/
 		JButton btnchanging = new JButton("\u00B1");
 		btnchanging.setBounds(335, 110, 60, 30);
 		contentPane.add(btnchanging);
 		
+		/*clean*/
 		JButton btnC = new JButton("C");
 		btnC.setBounds(270, 110, 60, 30);
 		contentPane.add(btnC);
@@ -100,6 +104,31 @@ public class calculatorGUI extends JFrame {
 		JButton btnShift = new JButton("<-");
 		btnShift.setBounds(140, 110, 60, 30);
 		contentPane.add(btnShift);
+		
+		/*數*/
+		JButton btnn1 = new JButton("1");
+		btnn1.setBounds(140, 215, 60, 30);
+		contentPane.add(btnn1);
+		
+		JButton btnn2 = new JButton("2");
+		btnn2.setBounds(205, 215, 60, 30);
+		contentPane.add(btnn2);
+		
+		JButton btnn3 = new JButton("3");
+		btnn3.setBounds(270, 215, 60, 30);
+		contentPane.add(btnn3);
+		
+		JButton btnn4 = new JButton("4");
+		btnn4.setBounds(140, 180, 60, 30);
+		contentPane.add(btnn4);
+		
+		JButton btnn5 = new JButton("5");
+		btnn5.setBounds(205, 180, 60, 30);
+		contentPane.add(btnn5);
+		
+		JButton btnn6 = new JButton("6");
+		btnn6.setBounds(270, 180, 60, 30);
+		contentPane.add(btnn6);
 		
 		JButton btnn7 = new JButton("7");
 		btnn7.setBounds(140, 145, 60, 30);
@@ -113,6 +142,28 @@ public class calculatorGUI extends JFrame {
 		btnn9.setBounds(270, 145, 60, 30);
 		contentPane.add(btnn9);
 		
+		JButton btnn0 = new JButton("0");
+		btnn0.setBounds(140, 250, 125, 30);
+		contentPane.add(btnn0);
+		
+		JButton btnDot = new JButton(".");
+		btnDot.setBounds(270, 250, 60, 30);
+		contentPane.add(btnDot);
+		
+		/*四則運算*/
+
+		JButton btnPlus = new JButton("+");
+		btnPlus.setBounds(335, 250, 60, 30);
+		contentPane.add(btnPlus);
+		
+		JButton btnSub = new JButton("-");
+		btnSub.setBounds(335, 215, 60, 30);
+		contentPane.add(btnSub);
+		
+		JButton btnMulti = new JButton("*");
+		btnMulti.setBounds(335, 180, 60, 30);
+		contentPane.add(btnMulti);
+		
 		JButton btnDiv = new JButton("/");
 		btnDiv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -125,58 +176,11 @@ public class calculatorGUI extends JFrame {
 		btnPercent.setBounds(400, 145, 60, 30);
 		contentPane.add(btnPercent);
 		
-		JButton btnRec = new JButton("1/x");
-		btnRec.setBounds(400, 180, 60, 30);
-		contentPane.add(btnRec);
-		
-		JButton btnMulti = new JButton("*");
-		btnMulti.setBounds(335, 180, 60, 30);
-		contentPane.add(btnMulti);
-		
-		JButton btnn6 = new JButton("6");
-		btnn6.setBounds(270, 180, 60, 30);
-		contentPane.add(btnn6);
-		
-		JButton btnn5 = new JButton("5");
-		btnn5.setBounds(205, 180, 60, 30);
-		contentPane.add(btnn5);
-		
-		JButton btnn4 = new JButton("4");
-		btnn4.setBounds(140, 180, 60, 30);
-		contentPane.add(btnn4);
-		
-		JButton btnn1 = new JButton("1");
-		btnn1.setBounds(140, 215, 60, 30);
-		contentPane.add(btnn1);
-		
-		JButton btnn2 = new JButton("2");
-		btnn2.setBounds(205, 215, 60, 30);
-		contentPane.add(btnn2);
-		
-		JButton btnn3 = new JButton("3");
-		btnn3.setBounds(270, 215, 60, 30);
-		contentPane.add(btnn3);
-		
-		JButton btnSub = new JButton("-");
-		btnSub.setBounds(335, 215, 60, 30);
-		contentPane.add(btnSub);
-		
 		JButton btnEqu = new JButton("=");
 		btnEqu.setBounds(400, 215, 60, 65);
 		contentPane.add(btnEqu);
 		
-		JButton btnn0 = new JButton("0");
-		btnn0.setBounds(140, 250, 125, 30);
-		contentPane.add(btnn0);
-		
-		JButton btnDot = new JButton(".");
-		btnDot.setBounds(270, 250, 60, 30);
-		contentPane.add(btnDot);
-		
-		JButton btnPlus = new JButton("+");
-		btnPlus.setBounds(335, 250, 60, 30);
-		contentPane.add(btnPlus);
-		
+		/*工程*/
 		JButton btnCos = new JButton("cos");
 		btnCos.setBounds(75, 180, 60, 30);
 		contentPane.add(btnCos);
@@ -200,10 +204,6 @@ public class calculatorGUI extends JFrame {
 		JButton btnTanh = new JButton("tanh");
 		btnTanh.setBounds(10, 215, 60, 30);
 		contentPane.add(btnTanh);
-		
-		JButton btnPower = new JButton("x^y");
-		btnPower.setBounds(75, 110, 60, 30);
-		contentPane.add(btnPower);
 		
 		JButton btnPi = new JButton("pi");
 		btnPi.setBounds(10, 110, 60, 30);
