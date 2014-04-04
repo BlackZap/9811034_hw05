@@ -25,6 +25,8 @@ public class calculatorGUI extends JFrame {
 	String SNum;
 	String SNum_temp;
 	int tempstate;
+	boolean nextNum = true;
+	private JTextField subGraphics;
 	public calculatorGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 480, 320);
@@ -34,17 +36,22 @@ public class calculatorGUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 96, 20);
+		toolBar.setBounds(0, 0, 100, 20);
 		contentPane.add(toolBar);
 		
 		/*上方顯示欄*/
 		Graphics = new JTextField();
 		Graphics.setHorizontalAlignment(SwingConstants.RIGHT);
-		Graphics.setToolTipText("");
 		Graphics.setText("0");
-		Graphics.setBounds(10, 20, 450, 45);
+		Graphics.setBounds(10, 45, 450, 20);
 		contentPane.add(Graphics);
 		Graphics.setColumns(10);
+		subGraphics = new JTextField();
+		subGraphics.setHorizontalAlignment(SwingConstants.RIGHT);
+		subGraphics.setText("0");
+		subGraphics.setBounds(10, 20, 450, 20);
+		contentPane.add(subGraphics);
+		subGraphics.setColumns(10);
 		
 		/*記憶功能*/
 		JButton btnMsub = new JButton("M-");
@@ -90,9 +97,14 @@ public class calculatorGUI extends JFrame {
 		btnPower.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tempstate==0)
-				SNum_temp = Graphics.getText();
+				{
+					SNum_temp = Graphics.getText();
+					}
+				else if(!nextNum)
+				equ();
 				tempstate = 5;
-				Graphics.setText("0");
+				nextNum=true;
+				subgcontrol();
 			}
 		});
 		btnPower.setBounds(75, 110, 60, 30);
@@ -124,6 +136,7 @@ public class calculatorGUI extends JFrame {
 		btnC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Graphics.setText(String.format("0"));
+				subGraphics.setText(String.format("0"));
 				SNum="0";
 				SNum_temp="0";
 				tempstate=0;
@@ -136,6 +149,7 @@ public class calculatorGUI extends JFrame {
 		btnCe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Graphics.setText(String.format("0"));
+				SNum="0";
 			}
 		});
 		btnCe.setBounds(205, 110, 60, 30);
@@ -160,10 +174,11 @@ public class calculatorGUI extends JFrame {
 		btnn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SNum =Graphics.getText();
-				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+				if((Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)&&!nextNum)
 				Graphics.setText(Graphics.getText()+"1");
 				else
 				Graphics.setText("1");
+				nextNum=false;
 			}
 		});
 		btnn1.setBounds(140, 215, 60, 30);
@@ -173,10 +188,11 @@ public class calculatorGUI extends JFrame {
 		btnn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String SNum =Graphics.getText();
-				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+				if((Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)&&!nextNum)
 					Graphics.setText(Graphics.getText()+"2");
 					else
 					Graphics.setText("2");
+				nextNum=false;
 			}
 		});
 		btnn2.setBounds(205, 215, 60, 30);
@@ -186,10 +202,11 @@ public class calculatorGUI extends JFrame {
 		btnn3.addActionListener(new ActionListener() {			
 			public void actionPerformed(ActionEvent e) {
 				SNum =Graphics.getText();
-				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+				if((Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)&&!nextNum)
 					Graphics.setText(Graphics.getText()+"3");
 					else
 					Graphics.setText("3");
+				nextNum=false;
 			}
 		});
 		btnn3.setBounds(270, 215, 60, 30);
@@ -199,10 +216,11 @@ public class calculatorGUI extends JFrame {
 		btnn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SNum =Graphics.getText();
-				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+				if((Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)&&!nextNum)
 					Graphics.setText(Graphics.getText()+"4");
 					else
 					Graphics.setText("4");
+				nextNum=false;
 			}
 		});
 		btnn4.setBounds(140, 180, 60, 30);
@@ -212,10 +230,11 @@ public class calculatorGUI extends JFrame {
 		btnn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SNum =Graphics.getText();
-				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+				if((Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)&&!nextNum)
 					Graphics.setText(Graphics.getText()+"5");
 					else
 					Graphics.setText("5");
+				nextNum=false;
 			}
 		});
 		btnn5.setBounds(205, 180, 60, 30);
@@ -225,10 +244,11 @@ public class calculatorGUI extends JFrame {
 		btnn6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SNum =Graphics.getText();
-				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+				if((Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)&&!nextNum)
 					Graphics.setText(Graphics.getText()+"6");
 					else
 					Graphics.setText("6");
+				nextNum=false;
 			}
 		});
 		btnn6.setBounds(270, 180, 60, 30);
@@ -238,10 +258,11 @@ public class calculatorGUI extends JFrame {
 		btnn7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SNum =Graphics.getText();
-				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+				if((Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)&&!nextNum)
 					Graphics.setText(Graphics.getText()+"7");
 					else
 					Graphics.setText("7");
+				nextNum=false;
 			}
 		});
 		btnn7.setBounds(140, 145, 60, 30);
@@ -251,10 +272,11 @@ public class calculatorGUI extends JFrame {
 		btnn8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SNum =Graphics.getText();
-				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+				if((Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)&&!nextNum)
 					Graphics.setText(Graphics.getText()+"8");
 					else
 					Graphics.setText("8");
+				nextNum=false;
 			}
 		});
 		btnn8.setBounds(205, 145, 60, 30);
@@ -264,10 +286,11 @@ public class calculatorGUI extends JFrame {
 		btnn9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SNum =Graphics.getText();
-				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+				if((Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)&&!nextNum)
 					Graphics.setText(Graphics.getText()+"9");
 					else
 					Graphics.setText("9");
+				nextNum=false;
 			}
 		});
 		btnn9.setBounds(270, 145, 60, 30);
@@ -277,10 +300,11 @@ public class calculatorGUI extends JFrame {
 		btnn0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SNum =Graphics.getText();
-				if(Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)
+				if((Double.parseDouble(Graphics.getText()) != 0||SNum.indexOf(".")>=0)&&!nextNum)
 					Graphics.setText(Graphics.getText()+"0");
 					else
 					Graphics.setText("0");
+				nextNum=false;
 			}
 		});
 		btnn0.setBounds(140, 250, 125, 30);
@@ -302,9 +326,14 @@ public class calculatorGUI extends JFrame {
 		btnPlus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tempstate==0)
-				SNum_temp = Graphics.getText();
+				{
+					SNum_temp = Graphics.getText();
+					}
+				else if(!nextNum)
+				equ();
 				tempstate = 1;
-				Graphics.setText("0");
+				nextNum=true;
+				subgcontrol();
 			}
 		});
 		btnPlus.setBounds(335, 250, 60, 30);
@@ -314,9 +343,14 @@ public class calculatorGUI extends JFrame {
 		btnSub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tempstate==0)
-				SNum_temp = Graphics.getText();
+				{
+					SNum_temp = Graphics.getText();
+					}
+				else if(!nextNum)
+				equ();
 				tempstate = 2;
-				Graphics.setText("0");
+				nextNum=true;
+				subgcontrol();
 			}
 		});
 		btnSub.setBounds(335, 215, 60, 30);
@@ -326,9 +360,14 @@ public class calculatorGUI extends JFrame {
 		btnMulti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tempstate==0)
-				SNum_temp = Graphics.getText();
-				tempstate = 3;
-				Graphics.setText("0");
+				{
+					SNum_temp = Graphics.getText();
+					}
+				else if(!nextNum)
+				equ();
+				tempstate = 1;
+				nextNum=true;
+				subgcontrol();
 			}
 		});
 		btnMulti.setBounds(335, 180, 60, 30);
@@ -338,9 +377,14 @@ public class calculatorGUI extends JFrame {
 		btnDiv.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (tempstate==0)
-				SNum_temp = Graphics.getText();
+				{
+					SNum_temp = Graphics.getText();
+					}
+				else if(!nextNum)
+				equ();
 				tempstate = 4;
-				Graphics.setText("0");
+				nextNum=true;
+				subgcontrol();
 			}
 		});
 		btnDiv.setBounds(335, 145, 60, 30);
@@ -360,20 +404,9 @@ public class calculatorGUI extends JFrame {
 		btnEqu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SNum = Graphics.getText();
-				switch(tempstate)
-				{
-				case 0:break;
-				case 1:Graphics.setText(String.format("%f",Double.parseDouble(SNum)+Double.parseDouble(SNum_temp)));
-				tempstate=0;break;
-				case 2:Graphics.setText(String.format("%f",Double.parseDouble(SNum)-Double.parseDouble(SNum_temp)));
-				tempstate=0;break;
-				case 3:Graphics.setText(String.format("%f",Double.parseDouble(SNum)*Double.parseDouble(SNum_temp)));
-				tempstate=0;break;
-				case 4:Graphics.setText(String.format("%f",Double.parseDouble(SNum)/Double.parseDouble(SNum_temp)));
-				tempstate=0;break;
-				case 5:Graphics.setText(String.format("%f",Math.pow(Double.parseDouble(SNum),Double.parseDouble(SNum_temp))));
-				tempstate=0;break;
-				}
+				equ();
+				subgcontrol();
+				nextNum=true;
 			}
 		});
 		btnEqu.setBounds(400, 215, 60, 65);
@@ -463,5 +496,42 @@ public class calculatorGUI extends JFrame {
 		});
 		btnLn.setBounds(10, 250, 60, 30);
 		contentPane.add(btnLn);
+		
+	}
+	
+	void equ()
+	{
+		SNum=Graphics.getText();
+		switch(tempstate)
+		{
+		case 0:break;
+		case 1:
+			SNum_temp=String.format("%f",Double.parseDouble(SNum)+Double.parseDouble(SNum_temp));
+			Graphics.setText(SNum_temp);
+			tempstate=0;break;
+		case 2:SNum_temp=String.format("%f",Double.parseDouble(SNum)-Double.parseDouble(SNum_temp));
+			Graphics.setText(SNum_temp);
+			tempstate=0;break;
+		case 3:SNum_temp=String.format("%f",Double.parseDouble(SNum)*Double.parseDouble(SNum_temp));
+			Graphics.setText(SNum_temp);
+			tempstate=0;break;
+		case 4:SNum_temp=String.format("%f",Double.parseDouble(SNum)/Double.parseDouble(SNum_temp));
+			Graphics.setText(SNum_temp);
+			tempstate=0;break;
+		case 5:SNum_temp=String.format("%f",Math.pow(Double.parseDouble(SNum_temp),Double.parseDouble(SNum)));
+			Graphics.setText(SNum_temp);
+			tempstate=0;break;
+		}
+	}
+	void subgcontrol()
+	{
+		switch(tempstate)
+		{case 0:subGraphics.setText("");break;
+		case 1:subGraphics.setText(SNum_temp+"+");break;
+		case 2:subGraphics.setText(SNum_temp+"-");break;
+		case 3:subGraphics.setText(SNum_temp+"*");break;
+		case 4:subGraphics.setText(SNum_temp+"/");break;
+		case 5:subGraphics.setText(SNum_temp+"^");break;
+		}
 	}
 }
