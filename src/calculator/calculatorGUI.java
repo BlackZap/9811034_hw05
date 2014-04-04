@@ -15,18 +15,23 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 import javax.swing.SwingConstants;
+import javax.swing.JFormattedTextField;
+import javax.swing.JTextPane;
+import javax.swing.JLabel;
+import java.awt.Color;
 
 public class calculatorGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField Graphics;
 
-	double Num;
+	double Num,mNum=0;
 	String SNum;
 	String SNum_temp;
 	int tempstate;
 	boolean nextNum = true;
 	private JTextField subGraphics;
+	private JTextField Msigh;
 	public calculatorGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 480, 320);
@@ -38,6 +43,12 @@ public class calculatorGUI extends JFrame {
 		JToolBar toolBar = new JToolBar();
 		toolBar.setBounds(0, 0, 100, 20);
 		contentPane.add(toolBar);
+		
+		/*記憶標示*/
+		Msigh = new JTextField();
+		Msigh.setBounds(364, 0, 96, 21);
+		contentPane.add(Msigh);
+		Msigh.setColumns(10);
 		
 		/*上方顯示欄*/
 		Graphics = new JTextField();
@@ -57,6 +68,9 @@ public class calculatorGUI extends JFrame {
 		JButton btnMsub = new JButton("M-");
 		btnMsub.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				mNum=mNum-Double.parseDouble(Graphics.getText());
+				Msigh.setText("M");
+				nextNum=true;
 			}
 		});
 		btnMsub.setBounds(400, 75, 60, 30);
@@ -65,20 +79,43 @@ public class calculatorGUI extends JFrame {
 		JButton btnMplus = new JButton("M+");
 		btnMplus.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				mNum=mNum+Double.parseDouble(Graphics.getText());
+				Msigh.setText("M");
+				nextNum=true;
 			}
 		});
 		btnMplus.setBounds(335, 75, 60, 30);
 		contentPane.add(btnMplus);
 		
 		JButton btnMs = new JButton("MS");
+		btnMs.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mNum=Double.parseDouble(Graphics.getText());
+				Msigh.setText("M");
+				nextNum=true;
+			}
+		});
 		btnMs.setBounds(270, 75, 60, 30);
 		contentPane.add(btnMs);
 				
 		JButton btnMr = new JButton("MR");
+		btnMr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Graphics.setText(String.format("%f", mNum));
+				nextNum=true;
+			}
+		});
 		btnMr.setBounds(205, 75, 60, 30);
 		contentPane.add(btnMr);
 		
 		JButton btnMc = new JButton("MC");
+		btnMc.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mNum=0;
+				Msigh.setText("");
+				nextNum=true;
+			}
+		});
 		btnMc.setBounds(140, 75, 60, 30);
 		contentPane.add(btnMc);
 		
@@ -496,6 +533,9 @@ public class calculatorGUI extends JFrame {
 		});
 		btnLn.setBounds(10, 250, 60, 30);
 		contentPane.add(btnLn);
+		
+		
+		
 		
 	}
 	
