@@ -30,7 +30,10 @@ public class calculatorGUI extends JFrame {
 	double Num,mNum=0;
 	String SNum;
 	String SNum_temp;
+	String Sum;
+	String Sum_temp;
 	int tempstate;
+	int ub,lb,tub,tlb,minlength,maxlength,carry;
 	boolean nextNum = true;
 	private JTextField subGraphics;
 	private JTextField Msigh;
@@ -407,7 +410,7 @@ public class calculatorGUI extends JFrame {
 					}
 				else if(!nextNum)
 				equ();
-				tempstate = 1;
+				tempstate = 3;
 				nextNum=true;
 				subgcontrol();
 			}
@@ -551,8 +554,42 @@ public class calculatorGUI extends JFrame {
 		{
 		case 0:break;
 		case 1:
-			//if(SNum.indexOf(".")>15||SNum_temp.indexOf(".")>15)
-			SNum_temp=formatter.format(Double.parseDouble(SNum_temp)+Double.parseDouble(SNum));
+			//if(SNum.indexOf(".")>15||SNum_temp.indexOf(".")>15) //表其中一個數為超過15位數無法用DOUBLE儲存計算
+			//{
+			if(SNum_temp.indexOf(".")>0)
+				SNum_temp=SNum_temp.substring(0,SNum_temp.indexOf(".")-1);
+			if(SNum.indexOf(".")>0)
+				SNum=SNum.substring(0,SNum.indexOf(".")-1);
+				minlength=Math.min(SNum.length(), SNum_temp.length());
+				maxlength=Math.max(SNum.length(), SNum_temp.length());
+				if(SNum.length()>SNum_temp.length())
+				{
+					for(int i=0;i<(maxlength-minlength);i++)
+						SNum_temp=0 + SNum_temp;
+				}
+				else
+				{
+					for(int i=0;i<(maxlength-minlength);i++)
+						SNum=0 + SNum;
+				}
+				carry=0;
+				for(int i=1;i<maxlength;i++)
+				{
+								
+					Sum=formatter.format(((SNum_temp.charAt(SNum_temp.length()-i))-'0'
+							+
+							(SNum.charAt(SNum.length()-i))-'0')%10);
+					carry=	((SNum_temp.charAt(SNum_temp.length()-i))-'0'
+							+
+							(SNum.charAt(SNum.length()-i))-'0')/10;
+					
+				}
+				SNum_temp=Integer.toString(carry)+Sum;
+			//}
+			//else
+			//{
+			//SNum_temp=formatter.format(Double.parseDouble(SNum_temp)+Double.parseDouble(SNum));
+			//}
 			Graphics.setText(SNum_temp);
 			tempstate=0;break;
 		case 2:SNum_temp=formatter.format(Double.parseDouble(SNum_temp)-Double.parseDouble(SNum));
