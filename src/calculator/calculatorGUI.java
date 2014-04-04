@@ -19,9 +19,11 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import java.awt.Color;
+import javax.swing.UIManager;
+import java.text.DecimalFormat;
 
 public class calculatorGUI extends JFrame {
-
+	DecimalFormat formatter = new DecimalFormat("#.###");
 	private JPanel contentPane;
 	private JTextField Graphics;
 
@@ -46,7 +48,10 @@ public class calculatorGUI extends JFrame {
 		
 		/*°O¾Ð¼Ð¥Ü*/
 		Msigh = new JTextField();
-		Msigh.setBounds(364, 0, 96, 21);
+		Msigh.setBackground(UIManager.getColor("Button.background"));
+		Msigh.setHorizontalAlignment(SwingConstants.RIGHT);
+		Msigh.setEditable(false);
+		Msigh.setBounds(420, 0, 40, 20);
 		contentPane.add(Msigh);
 		Msigh.setColumns(10);
 		
@@ -510,9 +515,9 @@ public class calculatorGUI extends JFrame {
 		btnTanh.setBounds(10, 215, 60, 30);
 		contentPane.add(btnTanh);
 		
-		JButton btnPi = new JButton("pi");
-		btnPi.setBounds(10, 110, 60, 30);
-		contentPane.add(btnPi);
+		//JButton btnPi = new JButton("pi");
+		//btnPi.setBounds(10, 110, 60, 30);
+		//contentPane.add(btnPi);
 		
 		JButton btnLog = new JButton("log");
 		btnLog.addActionListener(new ActionListener() {
@@ -546,19 +551,20 @@ public class calculatorGUI extends JFrame {
 		{
 		case 0:break;
 		case 1:
-			SNum_temp=String.format("%f",Double.parseDouble(SNum)+Double.parseDouble(SNum_temp));
+			//if(SNum.indexOf(".")>15||SNum_temp.indexOf(".")>15)
+			SNum_temp=formatter.format(Double.parseDouble(SNum_temp)+Double.parseDouble(SNum));
 			Graphics.setText(SNum_temp);
 			tempstate=0;break;
-		case 2:SNum_temp=String.format("%f",Double.parseDouble(SNum)-Double.parseDouble(SNum_temp));
+		case 2:SNum_temp=formatter.format(Double.parseDouble(SNum_temp)-Double.parseDouble(SNum));
 			Graphics.setText(SNum_temp);
 			tempstate=0;break;
-		case 3:SNum_temp=String.format("%f",Double.parseDouble(SNum)*Double.parseDouble(SNum_temp));
+		case 3:SNum_temp=formatter.format(Double.parseDouble(SNum_temp)*Double.parseDouble(SNum));
 			Graphics.setText(SNum_temp);
 			tempstate=0;break;
-		case 4:SNum_temp=String.format("%f",Double.parseDouble(SNum)/Double.parseDouble(SNum_temp));
+		case 4:SNum_temp=formatter.format(Double.parseDouble(SNum_temp)/Double.parseDouble(SNum));
 			Graphics.setText(SNum_temp);
 			tempstate=0;break;
-		case 5:SNum_temp=String.format("%f",Math.pow(Double.parseDouble(SNum_temp),Double.parseDouble(SNum)));
+		case 5:SNum_temp=formatter.format(Math.pow(Double.parseDouble(SNum_temp),Double.parseDouble(SNum)));
 			Graphics.setText(SNum_temp);
 			tempstate=0;break;
 		}
